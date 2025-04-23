@@ -96,7 +96,7 @@ class Endereco {
   }
 }
 
-class TipoEndereco extends Endedreco {
+class TipoEndereco extends Endereco {
   constructor(cep, rua, bairro, cidade, uf, complemento, tipo) {
     super(cep, rua, bairro, cidade, uf, complemento);
     this.tipo = tipo;
@@ -115,24 +115,27 @@ class TipoEndereco extends Endedreco {
   }
 }
 
-document.getAnimations("cep").addEventListener("input", async function (event) {
-  const cep = event.terget.value;
+document
+  .getElementById("cep")
+  .addEventListener("input", async function (event) {
+    const cep = event.target.value.replace(/\D/g, "");
 
-  if (cep.length === 8) {
-    const endereco = new Endereco();
-    const results = await endereco.busrcarEndereco(cep);
+    if (cep.length === 8) {
+      const endereco = new Endereco();
+      const results = await endereco.busrcarEndereco(cep);
 
-    if (results) {
-      document.getElementById("rua").value = results.rua;
-      document.getElementById("bairro").value = results.bairro;
-      document.getElementById("cidade").value = results.cidade;
-      document.getElementById("uf").value = results.uf;
-      document.getElementById("complemento").value = results.complemento || "";
-    } else {
-      alert("CEP INVÁLIDO!");
+      if (results) {
+        document.getElementById("rua").value = results.rua;
+        document.getElementById("bairro").value = results.bairro;
+        document.getElementById("cidade").value = results.cidade;
+        document.getElementById("uf").value = results.uf;
+        document.getElementById("complemento").value =
+          results.complemento || "";
+      } else {
+        alert("CEP INVÁLIDO!");
+      }
     }
-  }
-});
+  });
 
 document.querySelector("form").addEventListener("submit", function (event) {
   event.preventDefault();
