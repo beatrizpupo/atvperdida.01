@@ -10,15 +10,6 @@ body {
   background-color: #141016;
 }
 
-.container {
-  width: 90%;
-  height: 90%;
-
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
 .image {
   position: relative;
   width: 40%;
